@@ -79,7 +79,7 @@ class DailyFDCaptcha_Baidu:
         img = getCaptchaData(self.zlapp)
         result = self._basicGeneral(img)
         print(result)
-        return result
+        return result['words_result'][0]['words']
 
     def _get_token(self):
         resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
