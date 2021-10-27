@@ -83,7 +83,7 @@ class DailyFDCaptcha_Baidu:
 
     def _get_token(self):
         resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
-                        params={'grant_type': 'client_credentials', 'client_id': API_KEY, 'client_secret': SECRET_KEY})
+                        params={'grant_type': 'client_credentials', 'client_id': self.API_KEY, 'client_secret': self.SECRET_KEY})
         resp.raise_for_status()
         resp = resp.json()
         return resp['access_token']
