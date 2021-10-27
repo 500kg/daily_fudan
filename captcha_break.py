@@ -96,7 +96,6 @@ class DailyFDCaptcha_Baidu:
         resp = resp.json()
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
-        _basicGeneral.last_call = time.monotonic()
         return resp
     def reportError(self):
         if self.id != 0:
