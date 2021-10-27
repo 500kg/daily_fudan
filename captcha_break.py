@@ -77,7 +77,7 @@ class DailyFDCaptcha_Baidu:
     
     def __call__(self):
         img = getCaptchaData(self.zlapp)
-        result = _basicGeneral(img)
+        result = self._basicGeneral(img)
         print(result)
         return result
 
@@ -91,7 +91,7 @@ class DailyFDCaptcha_Baidu:
         data = {}
         data['image'] = img
 
-        resp = requests.post('https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic', data=data, params={'access_token': _get_token()})
+        resp = requests.post('https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic', data=data, params={'access_token': self._get_token()})
         resp.raise_for_status()
         resp = resp.json()
         if 'error_code' in resp:
