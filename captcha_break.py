@@ -89,7 +89,7 @@ class DailyFDCaptcha_Baidu:
         return resp['access_token']
     def _basicGeneral(self, img):
         data = {}
-        data['image'] = img
+        data['image'] = base64.b64encode(img).decode()
 
         resp = requests.post('https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic', data=data, params={'access_token': self._get_token()})
         resp.raise_for_status()
