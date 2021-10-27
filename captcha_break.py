@@ -97,9 +97,6 @@ class DailyFDCaptcha_Baidu:
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
         return resp
-    def reportError(self):
-        if self.id != 0:
-            self.info(reportError(self.id))
 
 if __name__ == "__main__":
     def base64_api(uname, pwd, img, typeid):
