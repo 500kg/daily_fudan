@@ -81,13 +81,13 @@ class DailyFDCaptcha_Baidu:
         print(result)
         return result
 
-    def _get_token():
+    def _get_token(self):
         resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
                         params={'grant_type': 'client_credentials', 'client_id': API_KEY, 'client_secret': SECRET_KEY})
         resp.raise_for_status()
         resp = resp.json()
         return resp['access_token']
-    def _basicGeneral(img):
+    def _basicGeneral(self, img):
         data = {}
         data['image'] = img
 
@@ -101,7 +101,7 @@ class DailyFDCaptcha_Baidu:
     def reportError(self):
         if self.id != 0:
             self.info(reportError(self.id))
-            
+
 if __name__ == "__main__":
     def base64_api(uname, pwd, img, typeid):
         return {
