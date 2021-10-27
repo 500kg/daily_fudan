@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO,
 # WeChat notice
 #get token via http://iyuu.cn/
 import requests
-from captcha_break import DailyFDCaptcha
+from captcha_break import DailyFDCaptcha_Baidu
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 def iyuu(IYUU_TOKEN):
@@ -274,7 +274,8 @@ if __name__ == '__main__':
 
     def captcha_info(message):
         iy_info(message, gl_info)
-    captcha = DailyFDCaptcha(uname,pwd,daily_fudan,captcha_info)
+    captcha = DailyFDCaptcha_Baidu(uname,pwd,daily_fudan,captcha_info)
+    sys_exit()
     daily_fudan.checkin(captcha)
 
     # 再检查一遍

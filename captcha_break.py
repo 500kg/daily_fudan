@@ -64,7 +64,44 @@ class DailyFDCaptcha:
     def reportError(self):
         if self.id != 0:
             self.info(reportError(self.id))
+
+
+class DailyFDCaptcha_Baidu:
+    zlapp = None
+    API_KEY = None
+    SECRET_KEY = None
+    def __init__(self, API_KEY, SECRET_KEY, zlapp, info_callback):
+        self.zlapp = zlapp
+        self.API_KEY = API_KEY
+        self.SECRET_KEY = SECRET_KEY
     
+    def __call__(self):
+        img = getCaptchaData(self.zlapp)
+        result = _basicGeneral(img)
+        print(result)
+        return result
+
+    def _get_token():
+        resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
+                        params={'grant_type': 'client_credentials', 'client_id': API_KEY, 'client_secret': SECRET_KEY})
+        resp.raise_for_status()
+        resp = resp.json()
+        return resp['access_token']
+    def _basicGeneral(img):
+        data = {}
+        data['image'] = img
+
+        resp = requests.post('https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic', data=data, params={'access_token': _get_token()})
+        resp.raise_for_status()
+        resp = resp.json()
+        if 'error_code' in resp:
+            raise RuntimeError(resp['error_msg'])
+        _basicGeneral.last_call = time.monotonic()
+        return resp
+    def reportError(self):
+        if self.id != 0:
+            self.info(reportError(self.id))
+            
 if __name__ == "__main__":
     def base64_api(uname, pwd, img, typeid):
         return {
