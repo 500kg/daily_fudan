@@ -80,7 +80,7 @@ class DailyFDCaptcha_Baidu:
         img = getCaptchaData(self.zlapp)
         self.result = self._basicGeneral(img)
         print(self.result)
-        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
+        if self.result['words_result_num'] != 1:
             return 0
         return self.result['words_result'][0]['words']
 
