@@ -227,7 +227,7 @@ class Zlapp(Fudan):
 
             save_msg = json_loads(save.text)["m"]
             logging.info(save_msg)
-            if save_msg != '验证码错误':
+            if save_msg == '操作成功':
                 break
             else:
                 captcha.reportError()
