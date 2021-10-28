@@ -77,10 +77,11 @@ class DailyFDCaptcha_Baidu:
     
     def __call__(self):
         img = getCaptchaData(self.zlapp)
-        result = self._basicGeneral(img)
-        print(result)
-        self.res = result['words_result'][0]['words']
-        return result['words_result'][0]['words']
+        self.result = self._basicGeneral(img)
+        print(self.result)
+        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']):
+            return 0
+        return self.result['words_result'][0]['words']
 
     def _get_token(self):
         resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
@@ -99,7 +100,7 @@ class DailyFDCaptcha_Baidu:
             raise RuntimeError(resp['error_msg'])
         return resp
     def reportError(self):
-        if len(self.res) != 4:
+        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']):
             self.info(reportError(len(self.res)))
 
 if __name__ == "__main__":
