@@ -79,6 +79,7 @@ class DailyFDCaptcha_Baidu:
         img = getCaptchaData(self.zlapp)
         result = self._basicGeneral(img)
         print(result)
+        self.res = result['words_result'][0]['words']
         return result['words_result'][0]['words']
 
     def _get_token(self):
@@ -97,6 +98,9 @@ class DailyFDCaptcha_Baidu:
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
         return resp
+    def reportError(self):
+        if len(self.res) != 4:
+            self.info(reportError(len(self.res)))
 
 if __name__ == "__main__":
     def base64_api(uname, pwd, img, typeid):
