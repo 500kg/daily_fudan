@@ -1,6 +1,7 @@
 import base64
 import json
 import sys
+import re
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -99,7 +100,7 @@ class DailyFDCaptcha_Baidu:
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
         if resp['words_result_num'] == 1:
-            resp['words_result'][0]['words'] = filter(str.isalpha, resp['words_result'][0]['words'])
+            resp['words_result'][0]['words'] = ''.join(re.findall('[A-Z]',resp['words_result'][0]['words']))
         return resp
     def reportError(self):
         if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
