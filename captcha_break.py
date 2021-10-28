@@ -79,7 +79,7 @@ class DailyFDCaptcha_Baidu:
         img = getCaptchaData(self.zlapp)
         self.result = self._basicGeneral(img)
         print(self.result)
-        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']):
+        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
             return 0
         return self.result['words_result'][0]['words']
 
@@ -100,7 +100,7 @@ class DailyFDCaptcha_Baidu:
             raise RuntimeError(resp['error_msg'])
         return resp
     def reportError(self):
-        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']):
+        if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
             self.info(reportError(len(self.res)))
 
 if __name__ == "__main__":
