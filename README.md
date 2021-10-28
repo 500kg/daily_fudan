@@ -51,16 +51,29 @@ https://cloud.baidu.com/product/ocr
 ![new-secret.png](https://i.loli.net/2020/10/28/sxTuBFtRvzSgUaA.png)
 
 - 建立名为`FUDAN`的 secret，值为`学号`+`(空格)`+`密码`，最后点击`Add secret`
+
 - secret名字必须为`FUDAN`！
+
 - secret名字必须为`FUDAN`！
+
 - secret名字必须为`FUDAN`！
+
 - 如果要开启成功填写的通知，在 http://iyuu.cn/ 申请token 然后在密码后面+ `(空格)`+`token`
+
 - `学号`+`(空格)`+`密码`+ `(空格)`+`token`
+
 - ~~如果要开启验证码识别，在 http://www.kuaishibie.cn/ 注册账号
   然后在token后面 + `(空格)`+`uname` + `(空格)`+`pwd`~~
+  
 - 搞个百度OCR，会送你1000次/月的文字识别次数。把相应的API_KEY和Secet_KEY复制过来
+
 - `学号`+`(空格)`+`密码`+ `(空格)`+`token`+`(空格)`+`API_KEY` + `(空格)`+`Secret_KEY`
-- 4. 启用 Actions
+
+  ## 4.启用 Actions
+
+  
+
+  
 
 > Actions 默认为关闭状态，Fork 之后需要手动执行一次，若成功运行其才会激活。
 
