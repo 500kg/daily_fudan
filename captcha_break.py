@@ -98,6 +98,8 @@ class DailyFDCaptcha_Baidu:
         resp = resp.json()
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
+        if self.result['words_result_num'] == 1:
+            self.result['words_result'][0]['words'] = filter(str.isalpha, self.result['words_result'][0]['words'])
         return resp
     def reportError(self):
         if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
