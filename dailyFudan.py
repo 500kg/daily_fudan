@@ -213,6 +213,7 @@ class Zlapp(Fudan):
         # logging.debug(self.last_info)
         for i in range(3):
             captcha_text = captcha()
+            logging.info(captcha_text)
             #captcha_text = 'abcd'
             self.last_info.update({
                 'sfzx': 1,
