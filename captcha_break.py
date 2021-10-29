@@ -93,6 +93,7 @@ class DailyFDCaptcha_Baidu:
     def _basicGeneral(self, img):
         data = {}
         data['image'] = base64.b64encode(img).decode()
+        data['language_type'] = 'ENG'
 
         resp = requests.post('https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic', data=data, params={'access_token': self._get_token()})
         resp.raise_for_status()
@@ -114,6 +115,7 @@ if __name__ == "__main__":
             "message": "用户名或密码错误",
             "data": ""
         }
+    
     print(base64_api(0,0,0,0))
     test = DailyFDCaptcha(0,0,0,print)
     test(0)
