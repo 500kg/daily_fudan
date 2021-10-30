@@ -71,6 +71,8 @@ class DailyFDCaptcha_Baidu:
     zlapp = None
     API_KEY = None
     SECRET_KEY = None
+    info = lambda x: x
+
     def __init__(self, API_KEY, SECRET_KEY, zlapp, info_callback):
         self.zlapp = zlapp
         self.API_KEY = API_KEY
