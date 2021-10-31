@@ -79,13 +79,18 @@ class DailyFDCaptcha_Baidu:
         self.SECRET_KEY = SECRET_KEY
     
     def __call__(self):
-        img = getCaptchaData(self.zlapp)
-        self.result = self._basicGeneral(img)
-        print(self.result)
+        for i in range(3):
+            img = getCaptchaData(self.zlapp)
+            self.result = self._basicGeneral(img)
+            if self.ok(self):
+                break
         if self.result['words_result_num'] != 1:
             return 0
         return self.result['words_result'][0]['words']
-
+    
+    def ok(self):
+        return self.result['words_result_num'] == 1 and len(self.result['words_result'][0]['words']) == 4
+    
     def _get_token(self):
         resp = requests.request('POST', 'https://aip.baidubce.com/oauth/2.0/token',
                         params={'grant_type': 'client_credentials', 'client_id': self.API_KEY, 'client_secret': self.SECRET_KEY})
@@ -103,11 +108,11 @@ class DailyFDCaptcha_Baidu:
         if 'error_code' in resp:
             raise RuntimeError(resp['error_msg'])
         if resp['words_result_num'] == 1:
-            resp['words_result'][0]['words'] = ''.join(re.findall('[a-zA-Z0-9]',resp['words_result'][0]['words']))
+            resp['words_result'][0]['words'] = ''.join(re.findall('[a-zA-Z]',resp['words_result'][0]['words']))
         return resp
     def reportError(self):
         if self.result['words_result_num'] != 1 or len(self.result['words_result'][0]['words']) != 4:
-            self.info(reportError(len(self.res)))
+            self.info(reportError(self.ressult))
 
 if __name__ == "__main__":
     def base64_api(uname, pwd, img, typeid):
