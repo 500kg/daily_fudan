@@ -4,7 +4,7 @@ from json import dumps as json_dumps
 from os import path as os_path
 from sys import exit as sys_exit
 from sys import argv as sys_argv
-
+import ssl
 from lxml import etree
 from requests import session
 import logging
@@ -152,6 +152,7 @@ class Zlapp(Fudan):
         检查
         """
         logging.debug("检测是否已提交")
+        ssl._create_default_https_context = ssl._create_unverified_context
         get_info = self.session.get(
                 'https://zlapp.fudan.edu.cn/ncov/wap/fudan/get-info')
         last_info = get_info.json()
