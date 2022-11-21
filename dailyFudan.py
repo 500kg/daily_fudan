@@ -154,7 +154,7 @@ class Zlapp(Fudan):
         logging.debug("检测是否已提交")
         ssl._create_default_https_context = ssl._create_unverified_context
         get_info = self.session.get(
-                'https://zlapp.fudan.edu.cn/ncov/wap/fudan/get-info')
+                'https://zlapp.fudan.edu.cn/ncov/wap/fudan/get-info', verify=False)
         last_info = get_info.json()
 
         logging.info("上一次提交日期为: %s " % last_info["d"]["info"]["date"])
