@@ -2,4 +2,6 @@ selenium
 baidu-aip
 image
 lxml
+pyOpenSSL
+certifi
 cryptography==36.0.2
