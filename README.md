@@ -107,7 +107,9 @@ https://cloud.baidu.com/product/ocr
 </details>
 
 
+## 结局
 
+喜报！喜报！于2022年12月9日，平安复旦停止服务，同学们再也不用填报平安复旦了。
 
 
 
